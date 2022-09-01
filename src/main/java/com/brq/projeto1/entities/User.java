@@ -1,13 +1,18 @@
 package com.brq.projeto1.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable  {
 
-	
+@Entity
+@Table(name = "usuario")
+public class User implements Serializable  {
 	private static final long serialVersionUID = 1L;
-	private long id;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
 	private String name;
 	private String email;
 	private String phone;
@@ -18,20 +23,27 @@ public class User implements Serializable  {
 		
 	}
 
-	public User(long id, String name, String email, String phone, String password) {
+	public User(Long id, String name, String email, String phone, String password) {
 		super();
-		this.id = id;
+		this.userId = id;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.password = password;
+	}
+	public User(String name, String email, String phone, String password) {
+		super();
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
 	}
 
-	public long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -64,7 +76,7 @@ public class User implements Serializable  {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(userId);
 	}
 
 	@Override
@@ -76,9 +88,7 @@ public class User implements Serializable  {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return id == other.id;
+		return userId == other.userId;
 	}
-	
-	
-	
+
 }
