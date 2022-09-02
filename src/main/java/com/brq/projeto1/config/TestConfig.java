@@ -1,9 +1,11 @@
 package com.brq.projeto1.config;
 
 
+import com.brq.projeto1.entities.Category;
 import com.brq.projeto1.entities.Order;
 import com.brq.projeto1.entities.User;
 import com.brq.projeto1.entities.enums.OrderStatus;
+import com.brq.projeto1.repositories.CategoryRepository;
 import com.brq.projeto1.repositories.OrderRepository;
 import com.brq.projeto1.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
         User u1 = new User(null,"Maria Brown", "mariab@gmail.com", "999888999", "123456");
         User u2 = new User(null,"Alex Green", "alexg@gmail.com", "777888999", "123456");
