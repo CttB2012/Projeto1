@@ -1,6 +1,7 @@
 package com.brq.projeto1.resources;
 
 
+import com.brq.projeto1.entities.DTO.UserDTO;
 import com.brq.projeto1.entities.User;
 import com.brq.projeto1.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ public class UserResource {
     private UserService service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> list = service.findAll();
+    public ResponseEntity<List<UserDTO>> findAll() {
+        List<UserDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id) {
-        User u = service.findById(id);
+    public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
+        UserDTO u = service.findById(id);
         return ResponseEntity.ok().body(u);
     }
 

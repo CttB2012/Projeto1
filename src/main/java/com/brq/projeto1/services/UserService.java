@@ -1,5 +1,6 @@
 package com.brq.projeto1.services;
 
+import com.brq.projeto1.entities.DTO.UserDTO;
 import com.brq.projeto1.entities.User;
 import com.brq.projeto1.repositories.UserRepository;
 import com.brq.projeto1.services.exceptions.DatabaseException;
@@ -10,9 +11,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class UserService  {
@@ -20,13 +21,36 @@ public class UserService  {
     @Autowired
     private UserRepository repository;
 
-    public List<User> findAll(){
-        return repository.findAll();
+    public List<UserDTO> findAll(){
+
+        List<User> listUserDataBase =  repository.findAll();
+
+        List<UserDTO> listUserDTO = new ArrayList<>();
+        for(User obj :listUserDataBase){
+
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserId(obj.getUserId());
+            userDTO.setName(obj.getName());
+            userDTO.setEmail(obj.getEmail());
+            userDTO.setPhone(obj.getPhone());
+            listUserDTO.add(userDTO);
+        }
+        return listUserDTO;
     }
 
-    public User findById(Long id){
-       Optional<User> obj =  repository.findById(id);
-       return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+    public UserDTO findById(Long id){
+        try {
+            Optional<User> obj =  repository.findById(id);
+            UserDTO userDTO = new UserDTO();
+            User userDataBase = obj.get();
+            userDTO.setName(userDataBase.getName());
+            userDTO.setEmail(userDataBase.getEmail());
+            userDTO.setPhone(userDataBase.getPhone());
+            return userDTO;
+        }
+        catch (Exception e){
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     public User insert(User obj) {
@@ -51,11 +75,9 @@ public class UserService  {
         }
     }
 
-
     private void updateData(User entity, User obj) {
         entity.setName(obj.getName());
         entity.setEmail(obj.getEmail());
         entity.setPhone(obj.getPhone());
     }
-
 }
