@@ -3,11 +3,13 @@ package com.brq.projeto1.services;
 import com.brq.projeto1.entities.DTO.UserDTO;
 import com.brq.projeto1.entities.User;
 import com.brq.projeto1.repositories.UserRepository;
+import com.brq.projeto1.resources.exceptions.ExceptionApiCadastro;
 import com.brq.projeto1.services.exceptions.DatabaseException;
 import com.brq.projeto1.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -54,8 +56,22 @@ public class UserService  {
     }
 
     public User insert(User obj) {
-        return repository.save(obj);
+        try {
+            Optional<User> user = repository.findByEmail(obj.getEmail());
+            if (user.isPresent()) {
+                throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST,"CAD-01");
+            }
+            repository.save(obj);
+            return obj;
+        }catch (DatabaseException e) {
+            throw new DatabaseException("Usuário já existente");
+        }catch (ExceptionApiCadastro e) {
+                throw e;
+        }catch (Exception e){
+            throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02",e.getMessage());
+        }
     }
+
     public void delete(Long id) {
         try {
             repository.deleteById(id);
