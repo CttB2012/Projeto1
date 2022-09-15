@@ -65,6 +65,7 @@ public class UserService  {
             return obj;
         }catch (DatabaseException e) {
             throw new DatabaseException("Usuário já existente");
+
         }catch (ExceptionApiCadastro e) {
                 throw e;
         }catch (Exception e){
@@ -76,7 +77,7 @@ public class UserService  {
         try {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException(id);
+            throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-03", e.getMessage());
         }catch (DataIntegrityViolationException e ) {
             throw new DatabaseException(e.getMessage());
         }
@@ -87,7 +88,9 @@ public class UserService  {
             updateData(entity, obj);
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(id);
+            throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-03", e.getMessage());
+        }catch (Exception e){
+            throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02",e.getMessage());
         }
     }
 
