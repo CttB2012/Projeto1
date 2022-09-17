@@ -1,8 +1,7 @@
-package com.brq.projeto1.resources.exceptions;
+package com.brq.projeto1.controller.exceptions;
 
 import com.brq.projeto1.services.exceptions.DatabaseException;
 import com.brq.projeto1.services.exceptions.ResourceNotFoundException;
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -42,12 +41,14 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
         error.setCampos(ex.getObjetosSaida());
         return new ResponseEntity<>(error,ex.getStatus());
     }
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<StandardError> erroNovoUsuario(Exception e, HttpServletRequest request) {
+
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request){
+//        BindingResult bindingResult = ex.getBindingResult();
+//        ExceptionResponseModel error = new ExceptionResponseModel(ex.get(),ex.getFieldError(),ex.getMessage());
 //
-//        String error = "Database Error";
-//        HttpStatus status = HttpStatus.BAD_REQUEST;
-//        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
-//        return ResponseEntity.status(status).body(err);
+//        error.setCampos(ex.getObjetosSaida());
+//        return new ResponseEntity<>(error,ex.getStatus());
 //    }
+
 }

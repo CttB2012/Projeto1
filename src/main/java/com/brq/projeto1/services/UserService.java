@@ -3,7 +3,7 @@ package com.brq.projeto1.services;
 import com.brq.projeto1.entities.DTO.UserDTO;
 import com.brq.projeto1.entities.User;
 import com.brq.projeto1.repositories.UserRepository;
-import com.brq.projeto1.resources.exceptions.ExceptionApiCadastro;
+import com.brq.projeto1.controller.exceptions.ExceptionApiCadastro;
 import com.brq.projeto1.services.exceptions.DatabaseException;
 import com.brq.projeto1.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +64,7 @@ public class UserService  {
             repository.save(obj);
             return obj;
         }catch (DatabaseException e) {
-            throw new DatabaseException("Usuário já existente");
+            throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST,"CAD-02", e.getMessage());
 
         }catch (ExceptionApiCadastro e) {
                 throw e;

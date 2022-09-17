@@ -1,11 +1,10 @@
-package com.brq.projeto1.resources;
+package com.brq.projeto1.controller;
 
 
 import com.brq.projeto1.entities.DTO.UserDTO;
 import com.brq.projeto1.entities.User;
 import com.brq.projeto1.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource {
+public class UserController {
 
     @Autowired
     private UserService service;

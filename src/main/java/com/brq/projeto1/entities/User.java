@@ -29,7 +29,7 @@ public class User implements Serializable {
 	@NotNull(message = "O campo 'nome' deve ser informado")
 	@NotBlank(message = "O nome deve ser informado")
 	@NotEmpty(message = "O nome não pode ser vazio")
-	@Pattern(regexp = "[a-zA-Z\\s]+")
+	@Pattern(regexp = "[a-zA-Z\\s]+", message = "{classpath:messages}")
 	@JsonProperty("nome")
 	private String name;
 
@@ -59,7 +59,6 @@ public class User implements Serializable {
 	public User() {
 
 	}
-
 
 	public User(Long id, String name, String email, String phone, String password) {
 		super();

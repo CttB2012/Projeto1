@@ -1,4 +1,4 @@
-package com.brq.projeto1.resources.exceptions;
+package com.brq.projeto1.controller.exceptions;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.util.Locale;
 import java.util.ResourceBundle;
 

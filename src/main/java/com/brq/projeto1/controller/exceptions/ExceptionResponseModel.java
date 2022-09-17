@@ -1,4 +1,4 @@
-package com.brq.projeto1.resources.exceptions;
+package com.brq.projeto1.controller.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
