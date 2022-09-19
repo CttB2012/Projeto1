@@ -40,14 +40,6 @@ public class UserController {
         return ResponseEntity.created(uri).body(obj);
     }
 
-//    @PostMapping(path = "/users")
-//    public ResponseEntity<User> insertTest (@Valid @RequestBody User obj) {
-//        System.out.println(obj);
-//        obj = service.insert(obj);
-//       URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//                .buildAndExpand(obj.getUserId()).toUri();
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);

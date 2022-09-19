@@ -89,8 +89,8 @@ public class UserService  {
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-03", e.getMessage());
-        }catch (Exception e){
-            throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02",e.getMessage());
+        }catch (Exception e) {
+            throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02", e.getMessage());
         }
     }
 

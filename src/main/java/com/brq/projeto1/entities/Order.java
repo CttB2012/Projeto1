@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,9 +29,10 @@ public class Order implements Serializable {
     private User client;
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
-
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
+
+    private Order name;
 
     public Order() {
     }
@@ -40,6 +42,7 @@ public class Order implements Serializable {
         this.moment = moment;
         setOrderStatus(orderStatus);
         this.client = client;
+
     }
     public Long getId() {
         return id;
@@ -80,10 +83,10 @@ public class Order implements Serializable {
         return items;
     }
 
-    public Double getTotal(){
-        double sum = 0.0;
+    public BigDecimal getTotal(){
+        BigDecimal sum = BigDecimal.ZERO;
         for(OrderItem x : items) {
-            sum = sum + x.getSubTotal();
+            sum = sum.add(x.getSubTotal());
         }
         return sum;
     }

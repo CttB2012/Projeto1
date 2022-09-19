@@ -7,6 +7,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 
@@ -19,12 +20,12 @@ public class OrderItem implements Serializable {
     @EmbeddedId
     private OrderItemPk id = new OrderItemPk();
     private Integer quantity;
-    private Double price;
+    private BigDecimal price;
 
     public OrderItem(){
     }
 
-    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+    public OrderItem(Order order, Product product, Integer quantity, BigDecimal price) {
         super();
         id.setOrder(order);
         id.setProduct(product);
@@ -55,16 +56,16 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
-        return price;
+    public BigDecimal getPrice(Integer quantity) {
+        return price.multiply(new BigDecimal(quantity));
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public Double getSubTotal(){
-        return price * quantity;
+    public BigDecimal getSubTotal(){
+        return price.multiply(new BigDecimal(this.quantity));
     }
 
     @Override
