@@ -25,10 +25,10 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 
-	@NotNull(message="O campo 'nome' deve ser informado")
+	@NotNull(message= "Nome é obrigatorio" )
 	@NotBlank(message = "O nome deve ser informado")
 	@NotEmpty(message = "O nome não pode ser vazio")
-	@Pattern(regexp = "[a-zA-Z\\s]+", message = "{classpath:message}")
+	@Pattern(regexp = "[a-zA-Z\\s]+", message = "O nome deve ser informado")
 	@JsonProperty("nome")
 	private String name;
 

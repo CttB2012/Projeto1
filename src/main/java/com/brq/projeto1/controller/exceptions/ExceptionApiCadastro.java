@@ -1,11 +1,13 @@
 package com.brq.projeto1.controller.exceptions;
 
+import lombok.Builder;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
 
 public class ExceptionApiCadastro extends ResponseStatusException {
 
@@ -22,6 +24,7 @@ public class ExceptionApiCadastro extends ResponseStatusException {
         this.objetoEntrada = null;
         this.msgCustom = ExceptionMessage.buscarMessage(codigoErro);
     }
+
 
     public ExceptionApiCadastro(HttpStatus status, Object objetoEntrada ,String codigoErro, String mensagemFormatada) {
         super(status, (String)null, (Throwable)null );
