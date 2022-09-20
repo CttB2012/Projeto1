@@ -24,8 +24,12 @@ public class ProductService {
     }
 
     public Product findById(Long id){
-       Optional<Product> u =  repository.findById(id);
-       return u.get();
+        try {
+            Optional<Product> u = repository.findById(id);
+            return u.get();
+            }catch (Exception e) {
+                throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-04", e.getMessage());
+        }
     }
     public Product insert(Product obj) {
         try {

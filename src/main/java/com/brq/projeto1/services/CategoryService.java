@@ -25,8 +25,12 @@ public class CategoryService {
     }
 
     public Category findById(Long id){
-       Optional<Category> u =  repository.findById(id);
-       return u.get();
+        try {
+            Optional<Category> u =  repository.findById(id);
+            return u.get();
+        }catch (Exception e) {
+            throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-12", e.getMessage());
+        }
     }
     public Category insert (Category obj) {
         try {

@@ -25,8 +25,12 @@ public class OrderService {
     }
 
     public Order findById(Long id){
-       Optional<Order> u =  repository.findById(id);
-       return u.get();
+        try {
+            Optional<Order> u =  repository.findById(id);
+            return u.get();
+        }catch (Exception e) {
+            throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-09", e.getMessage());
+        }
     }
 
     public Order insert(Order obj) {

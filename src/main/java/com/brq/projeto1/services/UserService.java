@@ -5,7 +5,6 @@ import com.brq.projeto1.entities.User;
 import com.brq.projeto1.repositories.UserRepository;
 import com.brq.projeto1.controller.exceptions.ExceptionApiCadastro;
 import com.brq.projeto1.services.exceptions.DatabaseException;
-import com.brq.projeto1.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -39,7 +38,6 @@ public class UserService  {
         }
         return listUserDTO;
     }
-
     public UserDTO findById(Long id){
         try {
             Optional<User> obj =  repository.findById(id);
@@ -51,10 +49,9 @@ public class UserService  {
             return userDTO;
         }
         catch (Exception e){
-            throw new ResourceNotFoundException(id);
+            throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-03", e.getMessage());
         }
     }
-
     public User insert(User obj) {
         try {
             Optional<User> user = repository.findByEmail(obj.getEmail());
@@ -72,7 +69,6 @@ public class UserService  {
             throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02",e.getMessage());
         }
     }
-
     public void delete(Long id) {
         try {
             repository.deleteById(id);
@@ -93,7 +89,6 @@ public class UserService  {
             throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02", e.getMessage());
         }
     }
-
     private void updateData(User entity, User obj) {
         entity.setName(obj.getName());
         entity.setEmail(obj.getEmail());

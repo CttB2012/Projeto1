@@ -42,13 +42,4 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(error,ex.getStatus());
     }
 
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request){
-//        BindingResult bindingResult = ex.getBindingResult();
-//        ExceptionResponseModel error = new ExceptionResponseModel(ex.get(),ex.getFieldError(),ex.getMessage());
-//
-//        error.setCampos(ex.getObjetosSaida());
-//        return new ResponseEntity<>(error,ex.getStatus());
-//    }
-
 }
