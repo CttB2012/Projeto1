@@ -13,17 +13,30 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Classe de serviço que se comunica diretamente com o Repositório Categoria
+ * @author WGomes
+ * @since release 1.0
+ */
 @Service
 public class CategoryService {
 
     @Autowired
     private CategoryRepository repository;
 
+    /**
+     * Método para Retornar todos as Categorias
+     * @return
+     */
     public List<Category> findAll(){
         return repository.findAll();
     }
 
+    /**
+     * Método para Retornar as Categorias pela ID
+     * @param id
+     * @return
+     */
     public Category findById(Long id){
         try {
             Optional<Category> u =  repository.findById(id);
@@ -32,6 +45,12 @@ public class CategoryService {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-12", e.getMessage());
         }
     }
+
+    /**
+     * Método para Inserir nova Categoria
+     * @param obj
+     * @return
+     */
     public Category insert (Category obj) {
         try {
             Optional<Category> cat = repository.findById(obj.getId());
@@ -46,6 +65,11 @@ public class CategoryService {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-11", e.getMessage());
         }
     }
+
+    /**
+     *  Método para Excluir Categoria
+     * @param id
+     */
     public void delete (Long id) {
         try {
             repository.deleteById(id);
@@ -55,6 +79,13 @@ public class CategoryService {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-11", e.getMessage());
         }
     }
+
+    /**
+     * Método para Atualizar Categoria
+     * @param id
+     * @param obj
+     * @return
+     */
     public Category update (Long id, Category obj) {
         try {
             Category entity = repository.getOne(id);
@@ -66,6 +97,12 @@ public class CategoryService {
             throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "CAD-11", e.getMessage());
         }
     }
+
+    /**
+     * Método complementar para Atualizar informações da Categoria
+     * @param entity
+     * @param obj
+     */
     private void updateData (Category entity, Category obj) {
         entity.setName(obj.getName());
     }

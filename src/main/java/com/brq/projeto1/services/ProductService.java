@@ -12,17 +12,31 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Classe de serviço que se comunica diretamente com o Repositório Produto
+ * @author WGomes
+ * @since release 1.0
+ */
 @Service
 public class ProductService {
 
     @Autowired
     private ProductRepository repository;
 
+
+    /**
+     * Método para Retornar todos os Produtos
+     * @return
+     */
     public List<Product> findAll(){
         return repository.findAll();
     }
 
+    /**
+     * Método para Retornar os Produtos pela ID
+     * @param id
+     * @return
+     */
     public Product findById(Long id){
         try {
             Optional<Product> u = repository.findById(id);
@@ -31,6 +45,11 @@ public class ProductService {
                 throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-04", e.getMessage());
         }
     }
+    /**
+     * Método para Inserir novo Produto
+     * @param obj
+     * @return
+     */
     public Product insert(Product obj) {
         try {
             Optional<Product> product = repository.findById(obj.getId());
@@ -43,6 +62,10 @@ public class ProductService {
             throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-06", e.getMessage());
         }
     }
+    /**
+     * Método para Excluir Produto
+     * @param id
+     */
     public void  delete(Long id){
         try {
             repository.deleteById(id);
@@ -50,6 +73,13 @@ public class ProductService {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-04", e.getMessage());
         }
     }
+
+    /**
+     * Método para Atualizar informações do Produto
+     * @param id
+     * @param obj
+     * @return
+     */
     public  Product update(Long id, Product obj) {
         try {
             Product product = repository.getOne(id);
@@ -59,6 +89,12 @@ public class ProductService {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-04", e.getMessage());
         }
     }
+
+    /**
+     * Método complementar para Atualizar informações do Produto
+     * @param product
+     * @param obj
+     */
     private void updateData(Product product, Product obj) {
         product.setName(obj.getName());
         product.setPrice(obj.getPrice());

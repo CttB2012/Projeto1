@@ -13,17 +13,30 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Classe de serviço que se comunica diretamente com o Repositório Pedidos
+ * @author WGomes
+ * @since release 1.0
+ */
 @Service
 public class OrderService {
 
     @Autowired
     private OrderRepository repository;
 
+    /**
+     * Método para Retornar todos os Pedidos
+     * @return
+     */
     public List<Order> findAll(){
         return repository.findAll();
     }
 
+    /**
+     * Método para Retornar os Pedidos pela ID
+     * @param id
+     * @return
+     */
     public Order findById(Long id){
         try {
             Optional<Order> u =  repository.findById(id);
@@ -33,6 +46,11 @@ public class OrderService {
         }
     }
 
+    /**
+     * Método para Inserir novo Pedido
+     * @param obj
+     * @return
+     */
     public Order insert(Order obj) {
         try {
             Optional<Order> order = repository.findById(obj.getId());
@@ -45,6 +63,11 @@ public class OrderService {
             throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "CAD-08");
         }
     }
+
+    /**
+     * Método para Excluir Pedido
+     * @param id
+     */
     @DeleteMapping
     public void delete(Long id) {
         try {
@@ -53,6 +76,13 @@ public class OrderService {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-09", e.getMessage());
         }
     }
+
+    /**
+     * Método para Atualizar Pedido
+     * @param id
+     * @param obj
+     * @return
+     */
     public Order update (Long id, Order obj) {
         try {
             Order entity = repository.getOne(id);
@@ -64,6 +94,12 @@ public class OrderService {
             throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "CAD-08", e.getMessage());
         }
     }
+
+    /**
+     * Método complementar para Atualizar informações do Pedido
+     * @param entity
+     * @param obj
+     */
     private void updateData(Order entity, Order obj) {
         entity.setOrderStatus(obj.getOrderStatus());
     }

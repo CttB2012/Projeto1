@@ -9,12 +9,19 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
+/**
+ * Classe contendo os parâmetros para a criação de Produto na banco de dados
+ * @author WGomes
+ * @since release 1.0
+ */
 @Entity
 @Table(name = "tabela_product")
 public class Product implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    /**
+     * Parâmetros que devem ser utilizados para criacão do Produto
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,17 +30,31 @@ public class Product implements Serializable {
     private BigDecimal price;
     private String imgUrl;
 
+    /**
+     * Indicação da Cardinalidade "Muitos para Muitos" entre a tabela Produto e a tabela Categoria
+     */
     @ManyToMany
     @JoinTable(name = "tabela_Prod_Categ", joinColumns = @JoinColumn(name = "product_id"),
     inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    /**
+     * Indicação da Cardinalidade "Um para Muitos" entre a tabela Produto e a ID do respectivo produto
+     */
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items = new HashSet<>();
 
     public Product (){
     }
 
+    /**
+     * Sobrecarga dos Parâmetros que devem ser utilizados para criação de novo Produto
+     * @param id
+     * @param name
+     * @param description
+     * @param price
+     * @param imgUrl
+     */
     public Product(Long id, String name, String description, BigDecimal price, String imgUrl) {
         this.id = id;
         this.name = name;
@@ -42,6 +63,10 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    /**
+     * Getters e Setters dos parâmetros
+     * @return
+     */
     public Long getId() {
         return id;
     }

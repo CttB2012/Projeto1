@@ -8,9 +8,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
-
+/**
+ * Classe para controlar as informações que serão exibidas
+ * @author WGomes
+ * @since release 1.0
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

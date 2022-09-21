@@ -14,13 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+/**
+* Classe contendo os parâmetros para a criação de Usuário na banco de dados
+* @author WGomes
+* @since release 1.0
+*/
 @Entity
 @Table(name = "usuario")
 @Validated
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Parâmetros que devem ser utilizados para criacão do Usuário
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
@@ -59,6 +66,14 @@ public class User implements Serializable {
 
 	}
 
+	/**
+	 * Sobrecarga dos Parâmetros que devem ser utilizados para criação de novo usuário
+	 * @param id
+	 * @param name
+	 * @param email
+	 * @param phone
+	 * @param password
+	 */
 	public User(Long id, String name, String email, String phone, String password) {
 		super();
 		this.userId = id;
@@ -67,6 +82,14 @@ public class User implements Serializable {
 		this.phone = phone;
 		this.password = password;
 	}
+
+	/**
+	 * Sobrecarga dos Parâmetros que devem ser utilizados para criação de novo usuário
+	 * @param name
+	 * @param email
+	 * @param phone
+	 * @param password
+	 */
 	public User(String name, String email, String phone, String password) {
 		super();
 		this.name = name;
@@ -74,6 +97,11 @@ public class User implements Serializable {
 		this.phone = phone;
 		this.password = password;
 	}
+
+	/**
+	 * Getters e Setters dos parâmetros
+	 * @return
+	 */
 	public Long getUserId() {
 		return userId;
 	}
@@ -104,6 +132,8 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(userId);

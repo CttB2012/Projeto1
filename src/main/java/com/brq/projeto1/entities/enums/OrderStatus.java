@@ -1,7 +1,10 @@
 package com.brq.projeto1.entities.enums;
 
-public enum OrderStatus {
 
+/**
+ * Enum que tipifica todos os estados de pagamentos
+ */
+public enum OrderStatus {
     WAITING_PAYMENT(1),
     PAID(2),
     SHIPPED(3),

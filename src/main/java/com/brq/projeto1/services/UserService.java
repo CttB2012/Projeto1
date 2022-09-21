@@ -16,12 +16,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Classe de serviço que se comunica diretamente com o Repositório Usuário
+ * @author WGomes
+ * @since release 1.0
+ */
 @Service
 public class UserService  {
 
     @Autowired
     private UserRepository repository;
 
+    /**
+     * Método para Retornar todos os Usuários
+     * @return
+     */
     public List<UserDTO> findAll(){
 
         List<User> listUserDataBase =  repository.findAll();
@@ -38,6 +47,12 @@ public class UserService  {
         }
         return listUserDTO;
     }
+
+    /**
+     * Método para Retornar os Usuários pela ID
+     * @param id
+     * @return
+     */
     public UserDTO findById(Long id){
         try {
             Optional<User> obj =  repository.findById(id);
@@ -52,6 +67,12 @@ public class UserService  {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-03", e.getMessage());
         }
     }
+
+    /**
+     * Método para Inserir novo Usuário
+     * @param obj
+     * @return
+     */
     public User insert(User obj) {
         try {
             Optional<User> user = repository.findByEmail(obj.getEmail());
@@ -69,6 +90,11 @@ public class UserService  {
             throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02",e.getMessage());
         }
     }
+
+    /**
+     * Método para Excluir Usuário
+     * @param id
+     */
     public void delete(Long id) {
         try {
             repository.deleteById(id);
@@ -78,6 +104,13 @@ public class UserService  {
             throw new DatabaseException(e.getMessage());
         }
     }
+
+    /**
+     * Método para Atualizar informações do Usuário
+     * @param id
+     * @param obj
+     * @return
+     */
     public User update(Long id, User obj) {
         try {
             User entity = repository.getOne(id);
@@ -89,6 +122,12 @@ public class UserService  {
             throw  new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-02", e.getMessage());
         }
     }
+
+    /**
+     * Método complementar para Atualizar informações do Usuário
+     * @param entity
+     * @param obj
+     */
     private void updateData(User entity, User obj) {
         entity.setName(obj.getName());
         entity.setEmail(obj.getEmail());

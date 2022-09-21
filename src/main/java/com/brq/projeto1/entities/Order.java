@@ -12,11 +12,19 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Classe contendo os parâmetros para a criação de Pedidos no banco de dados
+ * @author WGomes
+ * @since release 1.0
+ */
 @Entity
 @Table(name = "tabela_order")
 public class Order implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    /**
+     * Parâmetros que devem ser utilizados para criacão dos Pagamentos no Banco de Dados
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,6 +45,13 @@ public class Order implements Serializable {
     public Order() {
     }
 
+    /**
+     * Sobrecarga dos Parâmetros que devem ser utilizados para criação dos Pedidos
+     * @param id
+     * @param moment
+     * @param orderStatus
+     * @param client
+     */
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
@@ -44,6 +59,12 @@ public class Order implements Serializable {
         this.client = client;
 
     }
+
+
+    /**
+     * Getters e Setters dos parâmetros
+     * @return
+     */
     public Long getId() {
         return id;
     }
@@ -83,6 +104,10 @@ public class Order implements Serializable {
         return items;
     }
 
+    /**
+     * Método que soma a quantidade de itens do pedido e associa com a classe OrderItem
+     * @return
+     */
     public BigDecimal getTotal(){
         BigDecimal sum = BigDecimal.ZERO;
         for(OrderItem x : items) {

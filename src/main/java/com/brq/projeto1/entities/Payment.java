@@ -7,11 +7,20 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+
+/**
+ * Classe contendo os parâmetros para a criação dos Estados de pagamentos no banco de dados
+ * @author WGomes
+ * @since release 1.0
+ */
 @Entity
 @Table(name = "tabela_payment")
 public class Payment implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    /**
+     * Parâmetros que devem ser utilizados para criacão dos Pagamentos
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,12 +33,22 @@ public class Payment implements Serializable {
     public Payment (){
     }
 
+    /**
+     * Sobrecarga dos Parâmetros que devem ser utilizados para criação dos Estados de Pagamentos
+     * @param id
+     * @param moment
+     * @param order
+     */
     public Payment(Long id, Instant moment, Order order) {
         this.id = id;
         this.moment = moment;
         this.order = order;
     }
 
+    /**
+     * Getters e Setters dos parâmetros
+     * @return
+     */
     public Long getId() {
         return id;
     }

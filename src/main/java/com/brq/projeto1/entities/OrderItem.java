@@ -10,7 +10,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-
+/**
+ * Classe contendo os parâmetros para a associação do Pedido e Quantidade de Itens pedidos
+ * @author WGomes
+ * @since release 1.0
+ */
 
 @Entity
 @Table(name = "orderItem")
@@ -25,6 +29,13 @@ public class OrderItem implements Serializable {
     public OrderItem(){
     }
 
+    /**
+     * Sobrecarga dos Parâmetros para a associação do Pedido e Quantidade de Itens pedidos
+     * @param order
+     * @param product
+     * @param quantity
+     * @param price
+     */
     public OrderItem(Order order, Product product, Integer quantity, BigDecimal price) {
         super();
         id.setOrder(order);
@@ -32,6 +43,10 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
         this.price = price;
     }
+    /**
+     * Getters e Setters dos parâmetros
+     * @return
+     */
     @JsonIgnore
     public Order getOrder (){
         return id.getOrder();
@@ -64,6 +79,10 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    /**
+     * Método que calcula o subtotal do pedido multiplicando o preço pela quantidade de produtos da compra
+     * @return
+     */
     public BigDecimal getSubTotal(){
         return price.multiply(new BigDecimal(this.quantity));
     }

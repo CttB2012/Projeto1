@@ -13,6 +13,11 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Arrays;
 
+/**
+ * Classe para TESTAR se o Banco de Dados está recebendo e gravando as informações enviadas
+ * @author WGomes
+ * @since release 1.0
+ */
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
@@ -32,6 +37,11 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
+    /**
+     * Método para INSERIR, em caráter de teste, informações no banco de dados.
+     * @param args incoming main method arguments
+     * @throws Exception
+     */
     @Override
     public void run(String... args) throws Exception {
 

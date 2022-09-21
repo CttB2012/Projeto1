@@ -8,12 +8,19 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
+/**
+ * Classe contendo os parâmetros para a criação das Categorias no banco de dados
+ * @author WGomes
+ * @since release 1.0
+ */
 @Entity
 @Table(name = "tabela_category")
 public class Category implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    /**
+     * Parâmetros que devem ser utilizados para criacão das Categorias no Banco de Dados
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,12 +32,21 @@ public class Category implements Serializable {
     public Category() {
     }
 
+    /**
+     * Sobrecarga dos Parâmetros que devem ser utilizados para criação das Categorias
+     * @param id
+     * @param name
+     */
    public Category(Long id, String name) {
         super();
         this.id = id;
         this.name = name;
     }
 
+    /**
+     * Getters e Setters dos parâmetros
+     * @return
+     */
     public Long getId() {
         return id;
     }
