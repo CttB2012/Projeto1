@@ -3,15 +3,21 @@ package com.brq.projeto1.controller.exceptions;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ExceptionResponseModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,8 +34,20 @@ public class ExceptionResponseModel implements Serializable {
     @JsonProperty("campos")
     private List<?> campos = new ArrayList<>();
 
-    public ExceptionResponseModel() {
+    @JsonProperty("status")
+    private HttpStatus httpStatus;
+    @JsonProperty("dataHora_erro")
+    private LocalDateTime dataHora;
+    @JsonProperty("erros")
+    private List<ErrorRequest> error;
+
+    public ExceptionResponseModel(HttpStatus httpStatus, LocalDateTime dataHora, List<ErrorRequest> error) {
+        this.httpStatus = httpStatus;
+        this.dataHora = dataHora;
+        this.error = error;
     }
+
+
 
     public ExceptionResponseModel(String codigo, String mensagem, String mensagemDetalhada) {
         this.codigo = codigo;

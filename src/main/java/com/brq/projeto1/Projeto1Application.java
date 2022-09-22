@@ -2,6 +2,7 @@ package com.brq.projeto1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since Release 1.0
  */
 @SpringBootApplication
+@EnableSwagger2
 public class Projeto1Application {
 
 	/**

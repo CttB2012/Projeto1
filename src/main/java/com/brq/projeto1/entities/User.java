@@ -35,7 +35,7 @@ public class User implements Serializable {
 	@NotNull(message= "Nome é obrigatorio" )
 	@NotBlank(message = "O nome deve ser informado")
 	@NotEmpty(message = "O nome não pode ser vazio")
-	@Pattern(regexp = "[a-zA-Z\\s]+", message = "O nome deve ser informado")
+	@Pattern(regexp = "[a-zA-Z\\s]+", message = "O nome não pode ter caracteres especiais")
 	@JsonProperty("nome")
 	private String name;
 

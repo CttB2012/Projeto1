@@ -5,9 +5,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.time.Instant;
 
+/**
+ * Classe para criar o padrão para lançar as Exceções
+ * @author WGomes
+ * @since release 1.0
+ */
 public class StandardError implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    /**
+     * Parâmetros que devem ser utilizados para criar as Exceções
+     */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant timeStamp;
     private Integer status;
@@ -18,6 +26,14 @@ public class StandardError implements Serializable {
     public  StandardError() {
      }
 
+    /**
+     * Sobrecarga dos Parâmetros que devem ser utilizados para criar as Exceções
+     * @param timeStamp
+     * @param status
+     * @param error
+     * @param message
+     * @param path
+     */
     public StandardError(Instant timeStamp, Integer status, String error, String message, String path) {
         this.timeStamp = timeStamp;
         this.status = status;
@@ -26,6 +42,10 @@ public class StandardError implements Serializable {
         this.path = path;
     }
 
+    /**
+     * Getters e Setters dos parâmetros
+     * @return
+     */
     public Instant getTimeStamp() {
         return timeStamp;
     }

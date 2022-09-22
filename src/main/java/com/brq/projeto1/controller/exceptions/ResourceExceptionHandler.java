@@ -14,16 +14,26 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.module.ModuleDescriptor;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe para lançar as exceções padronizadas
+ * @author WGomes
+ * @since 1.0
+ */
 @ControllerAdvice
 @RestController
 public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Método para Tratar o erro "Usuário não encontrado"
+     * @param e
+     * @param request
+     * @return
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request){
 
@@ -61,7 +71,7 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
         });
 
 
-        ExceptionDomain problem = ExceptionDomain.builder()
+        ExceptionResponseModel problem = ExceptionResponseModel.builder()
                 .dataHora(LocalDateTime.now())
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .error(errors)
