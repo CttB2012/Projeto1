@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe para lançar as exceções padronizadas
+ * Classe para lançar as exceções personalizadas
  * @author WGomes
  * @since 1.0
  */

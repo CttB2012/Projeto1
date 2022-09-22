@@ -115,7 +115,9 @@ public class Order implements Serializable {
         }
         return sum;
     }
-
+    /**
+     * Método de validação para cada entidade Order criada na base de dados
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,6 +125,10 @@ public class Order implements Serializable {
         Order order = (Order) o;
         return id.equals(order.id);
     }
+    /**
+     * Método "interno" do Java que cria um identificador para cada entidade Order criada
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id);

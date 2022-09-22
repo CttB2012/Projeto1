@@ -120,6 +120,9 @@ public class Product implements Serializable {
         return set;
     }
 
+    /**
+     * Método de validação para cada entidade Product criada na base de dados
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,6 +131,10 @@ public class Product implements Serializable {
         return id.equals(product.id);
     }
 
+    /**
+     * Método "interno" do Java que cria um identificador para cada entidade Product criada
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id);

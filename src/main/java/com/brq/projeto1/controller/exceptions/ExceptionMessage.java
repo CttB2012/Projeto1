@@ -11,28 +11,30 @@ import java.util.ResourceBundle;
 
 import static org.hibernate.internal.util.StringHelper.isNotEmpty;
 
+
+/**
+ * Classe que estrutura as mensagens personalizadas de suas respectivs exceções
+ * @author WGomes
+ * @since Release 1.0
+ */
 @Component
 public class ExceptionMessage {
 
 
     private static Environment environment;
-
     @Autowired
     private Environment env;
-
     @PostConstruct
     private void init(){
         environment = this.env;
     }
     private ExceptionMessage(){
-
     }
 
     public static String buscarMessage(String codigoErro){
         ResourceBundle messages = getMessages();
         if(!messages.containsKey(codigoErro)) {
             return codigoErro;
-
         }
         return messages.getString(codigoErro);
     }

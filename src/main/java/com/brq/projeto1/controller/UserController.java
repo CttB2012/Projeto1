@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok().body(list);
     }
     /**
-     * Método para RETORNAR os USUÁRIOS pela ID
+     * Método para LISTAR os USUÁRIOS pela ID
      * @return
      */
     @GetMapping(value = "/{id}")

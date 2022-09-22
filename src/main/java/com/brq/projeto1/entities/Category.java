@@ -67,6 +67,9 @@ public class Category implements Serializable {
         return products;
     }
 
+    /**
+     * Método de validação para cada entidade Category criada na base de dados
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,10 +78,13 @@ public class Category implements Serializable {
         return id == category.id;
     }
 
+    /**
+     * Método "interno" do Java que cria um identificador para cada entidade Category criada
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
 }

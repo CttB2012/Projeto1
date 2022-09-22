@@ -87,6 +87,9 @@ public class OrderItem implements Serializable {
         return price.multiply(new BigDecimal(this.quantity));
     }
 
+    /**
+     * Método de validação para cada entidade OrderItem criada na base de dados
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,6 +98,10 @@ public class OrderItem implements Serializable {
         return id.equals(orderItem.id);
     }
 
+    /**
+     * Método "interno" do Java que cria um identificador para cada entidade OrderItem criada
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id);

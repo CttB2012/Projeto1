@@ -1,6 +1,6 @@
 package com.brq.projeto1.controller.exceptions;
 
-import lombok.Builder;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
@@ -8,7 +8,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-
+/**
+ * Classe que cria a estrutura para lançar mensagens de erro personalizadas
+ * @author WGomes
+ * @since Release 1.0
+ */
 public class ExceptionApiCadastro extends ResponseStatusException {
 
     private static final long serialVersionUID = 1l;
@@ -18,6 +22,12 @@ public class ExceptionApiCadastro extends ResponseStatusException {
     private String msgCustom;
     private List<?> objetosSaida;
 
+
+    /**
+     * Construtores e suas respectivas sobrecargas
+     * @param status
+     * @param codigoErro
+     */
     public ExceptionApiCadastro(HttpStatus status, String codigoErro) {
         super(status, (String)null, (Throwable)null );
         this.codigoErro = codigoErro;
@@ -60,6 +70,11 @@ public class ExceptionApiCadastro extends ResponseStatusException {
         this.objetosSaida = objetosSaida;
         this.msgCustom = ExceptionMessage.buscarMessage(codigoErro);
     }
+
+    /**
+     * Getters e Setters
+     * @return
+     */
     public Object getObjetoEntrada(){
         return this.objetoEntrada;
     }

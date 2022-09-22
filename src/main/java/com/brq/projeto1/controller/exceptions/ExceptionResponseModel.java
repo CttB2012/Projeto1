@@ -13,13 +13,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe com todos os parâmetros para a construção de mensagens personalizadas de exceção
+ * @author WGomes
+ * @since Release 1.0
+ */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExceptionResponseModel implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("codigo")
@@ -41,13 +45,18 @@ public class ExceptionResponseModel implements Serializable {
     @JsonProperty("erros")
     private List<ErrorRequest> error;
 
+    /**
+     * Construtores e suas respectivas sobrecargas
+     * @param httpStatus
+     * @param dataHora
+     * @param error
+     */
+
     public ExceptionResponseModel(HttpStatus httpStatus, LocalDateTime dataHora, List<ErrorRequest> error) {
         this.httpStatus = httpStatus;
         this.dataHora = dataHora;
         this.error = error;
     }
-
-
 
     public ExceptionResponseModel(String codigo, String mensagem, String mensagemDetalhada) {
         this.codigo = codigo;
@@ -62,6 +71,10 @@ public class ExceptionResponseModel implements Serializable {
         this.campos = campos;
     }
 
+    /**
+     * Getters e Setters
+     * @return
+     */
     public String getCodigo() {
         return codigo;
     }

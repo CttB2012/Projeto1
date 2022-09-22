@@ -134,10 +134,17 @@ public class User implements Serializable {
 	}
 
 
+	/**
+	 * Método "interno" do Java que cria um identificador para cada entidade User criada
+	 * @return
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(userId);
 	}
+	/**
+	 * Método de validação para cada entidade User criada na base de dados
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -149,5 +156,4 @@ public class User implements Serializable {
 		User other = (User) obj;
 		return userId == other.userId;
 	}
-
 }

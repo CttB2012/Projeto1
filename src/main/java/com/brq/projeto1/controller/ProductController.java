@@ -25,7 +25,7 @@ public class ProductController {
     private ProductService service;
 
     /**
-     * Método para RETORNAR TODOS os PRODUTOS
+     * Método para LISTAR TODOS os PRODUTOS
      * @return
      */
     @GetMapping
@@ -72,8 +72,5 @@ public class ProductController {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-
-
-
 
 }

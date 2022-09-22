@@ -73,6 +73,10 @@ public class Payment implements Serializable {
         this.order = order;
     }
 
+
+    /**
+     * Método de validação para cada entidade Payment criada na base de dados
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,7 +84,10 @@ public class Payment implements Serializable {
         Payment payment = (Payment) o;
         return id.equals(payment.id);
     }
-
+    /**
+     * Método "interno" do Java que cria um identificador para cada entidade Product criada
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id);

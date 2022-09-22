@@ -6,12 +6,20 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
+/**
+ * Classe para CONFIGURAR o Swagger
+ * @author WGomes
+ * @since release 1.0
+ */
 @Configuration
 public class SwaggerConfig {
 
+    /**
+     * Método para Construir a Documentação Swagger
+     * @return
+     */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()

@@ -6,6 +6,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/**
+ * Classe para criar uma 'Request' de erros
+ * @author WGomes
+ * @since Release 1.0
+ */
 @Getter
 @Setter
 @Builder

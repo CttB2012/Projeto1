@@ -27,7 +27,7 @@ public class StandardError implements Serializable {
      }
 
     /**
-     * Sobrecarga dos Parâmetros que devem ser utilizados para criar as Exceções
+     * Sobrecarga dos Parâmetros que devem ser utilizados para criar as Exceções personalizadas
      * @param timeStamp
      * @param status
      * @param error
