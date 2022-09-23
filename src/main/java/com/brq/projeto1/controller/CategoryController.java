@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CategoryController {
     private CategoryService service;
 
     /**
-     * Método para RETORNAR TODAS as catedorias
+     * Método para LISTAR TODAS as catedorias
      * @return
      */
     @GetMapping
@@ -33,7 +34,7 @@ public class CategoryController {
         return ResponseEntity.ok().body(list);
     }
     /**
-     * Método para RETORNAR  as catedorias PELA ID
+     * Método para LISTAR  as catedorias PELA ID
      * @return
      */
     @GetMapping(value = "/{id}")
@@ -47,10 +48,10 @@ public class CategoryController {
      * @return
      */
     @PostMapping
-    public ResponseEntity<Category> insert (@RequestBody Category obj) {
+    public ResponseEntity<Category> insert (@Valid @RequestBody Category obj) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(obj.getId()).toUri();
+                .buildAndExpand(obj.getName()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 

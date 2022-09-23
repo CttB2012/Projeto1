@@ -59,7 +59,9 @@ public class OrderService {
             }
         repository.save(obj);
         return obj;
-    }catch (Exception e ) {
+    }catch (ExceptionApiCadastro e) {
+            throw e;
+        }catch (Exception e ) {
             throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "CAD-08");
         }
     }

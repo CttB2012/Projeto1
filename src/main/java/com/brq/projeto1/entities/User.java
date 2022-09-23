@@ -46,8 +46,8 @@ public class User implements Serializable {
 	private String email;
 
 	@NotNull(message = "O campo 'telefone' deve ser informado")
-	@NotBlank(message = "O nome deve ser informado")
-	@NotEmpty(message = "O nome não pode ser vazio")
+	@NotBlank(message = "O telefone deve ser informado")
+	@NotEmpty(message = "O telefone não pode ser vazio")
 	@JsonProperty("telefone")
 	private String phone;
 

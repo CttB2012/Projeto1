@@ -60,7 +60,6 @@ public class Order implements Serializable {
 
     }
 
-
     /**
      * Getters e Setters dos parâmetros
      * @return

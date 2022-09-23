@@ -1,6 +1,7 @@
 package com.brq.projeto1.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,10 +25,15 @@ public class Product implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private Long id;
+    @JsonProperty("nome")
     private String name;
+    @JsonProperty("descrição")
     private String description;
+    @JsonProperty("preço")
     private BigDecimal price;
+    @JsonProperty("imagem")
     private String imgUrl;
 
     /**

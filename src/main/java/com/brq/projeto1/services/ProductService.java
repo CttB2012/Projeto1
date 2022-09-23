@@ -52,12 +52,14 @@ public class ProductService {
      */
     public Product insert(Product obj) {
         try {
-            Optional<Product> product = repository.findById(obj.getId());
+            Optional<Product> product = repository.findByName(obj.getName());
             if (product.isPresent()) {
                 throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-05");
             }
             repository.save(obj);
             return obj;
+        }catch (ExceptionApiCadastro e) {
+            throw e;
         }catch (Exception e) {
             throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR,"CAD-06", e.getMessage());
         }

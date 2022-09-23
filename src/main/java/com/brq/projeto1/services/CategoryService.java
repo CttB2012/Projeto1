@@ -53,12 +53,15 @@ public class CategoryService {
      */
     public Category insert (Category obj) {
         try {
-            Optional<Category> cat = repository.findById(obj.getId());
+            Optional<Category> cat = repository.findByName(obj.getName());
             if (cat.isPresent()) {
                 throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-10");
             }
             repository.save(obj);
             return obj;
+        }catch (ExceptionApiCadastro e) {
+            throw e;
+
         }catch (DatabaseException e ) {
             throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CAD-11", e.getMessage());
         }catch (Exception e) {

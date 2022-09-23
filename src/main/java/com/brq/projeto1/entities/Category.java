@@ -1,6 +1,8 @@
 package com.brq.projeto1.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +17,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "tabela_category")
+@Validated
 public class Category implements Serializable {
     private static final long serialVersionUID = 1l;
 
@@ -24,6 +27,8 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonProperty("categoria")
     private String name;
 
     @JsonIgnore

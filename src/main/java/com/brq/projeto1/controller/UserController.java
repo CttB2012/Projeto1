@@ -26,7 +26,7 @@ public class UserController {
     private UserService service;
 
     /**
-     * Método para RETORNAR TODOS os USUÁRIOS
+     * Método para LISTAR TODOS os USUÁRIOS
      * @return
      */
     @GetMapping
