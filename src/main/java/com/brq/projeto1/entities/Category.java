@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,6 +31,9 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message= "O nome da categoria é obrigatorio")
+    @NotBlank(message= "O nome da categoria deve ser informado")
+    @NotEmpty(message= "O nome da categoria não pode ser vazio")
     @JsonProperty("categoria")
     private String name;
 

@@ -57,11 +57,6 @@ public class User implements Serializable {
 	@JsonProperty("senha")
 	private String password;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "client")
-	private List<Order> orders = new ArrayList<>();
-
-
 	public User() {
 
 	}

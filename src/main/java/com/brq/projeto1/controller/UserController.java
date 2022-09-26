@@ -33,6 +33,7 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> findAll() {
         List<UserDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
+        
     }
     /**
      * Método para LISTAR os USUÁRIOS pela ID

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -27,10 +30,20 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
     private Long id;
+
+
+    @NotNull(message= "O nome do produto é obrigatório")
+    @NotBlank(message = "O nome deve ser informado")
+    @NotEmpty(message = "O nome não pode ser vazio")
     @JsonProperty("nome")
     private String name;
+    @NotNull(message= "A descrição do produto é obrigatória")
+    @NotBlank(message= "A descrição do produto deve ser informada")
+    @NotEmpty(message= "A descrição não pode ser vazia")
     @JsonProperty("descrição")
     private String description;
+
+    @NotNull(message= "O preço do produto deve ser informado")
     @JsonProperty("preço")
     private BigDecimal price;
     @JsonProperty("imagem")
@@ -47,10 +60,7 @@ public class Product implements Serializable {
     /**
      * Indicação da Cardinalidade "Um para Muitos" entre a tabela Produto e a ID do respectivo produto
      */
-    @OneToMany(mappedBy = "id.product")
-    private Set<OrderItem> items = new HashSet<>();
-
-    public Product (){
+     public Product (){
     }
 
     /**
@@ -117,14 +127,7 @@ public class Product implements Serializable {
         return categories;
     }
 
-    @JsonIgnore
-    public Set<Order> getOrders(){
-        Set<Order> set = new HashSet<>();
-        for (OrderItem x : items) {
-          set.add(x.getOrder());
-        }
-        return set;
-    }
+
 
     /**
      * Método de validação para cada entidade Product criada na base de dados
